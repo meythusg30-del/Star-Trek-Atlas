@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Star Trek: Every Film and Star Trek Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EBF5; --surface:#F7F8FC; --raised:#FFFFFF; --ink:#171C3D; --muted:#545A7A; --line:#C6CAE0;
+  --gold:#94650A; --red:#A6352A; --blue:#2A5DB0; --teal:#1C7C75; --star:23,28,61;
+  --focus:#2A5DB0;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1130; --surface:#151A41; --raised:#1C2250; --ink:#E8EAF6; --muted:#9CA2C6; --line:#2E3563;
+    --gold:#E8B54D; --red:#E86E5F; --blue:#8CB9FF; --teal:#63D1C6; --star:232,234,246; --focus:#8CB9FF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1130; --surface:#151A41; --raised:#1C2250; --ink:#E8EAF6; --muted:#9CA2C6; --line:#2E3563;
+  --gold:#E8B54D; --red:#E86E5F; --blue:#8CB9FF; --teal:#63D1C6; --star:232,234,246; --focus:#8CB9FF;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:"Syne","Avenir Next","Helvetica Neue",Arial,sans-serif;margin:0;line-height:1.08;letter-spacing:-.01em}
+p{margin:0 0 1em}
+a{color:var(--blue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:56px;overflow-x:auto;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.brand{font-family:"Syne",sans-serif;font-weight:800;white-space:nowrap;text-decoration:none;color:var(--ink);margin-right:auto}
+.nav a.link{color:var(--muted);text-decoration:none;white-space:nowrap;font-size:15px}
+.nav a.link:hover{color:var(--ink)}
+
+/* hero */
+.hero{position:relative;min-height:min(88vh,760px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .wrap{position:relative;padding-bottom:72px;padding-top:120px;width:100%}
+.hero h1{font-size:clamp(44px,8.4vw,112px);font-weight:800;max-width:11ch}
+.hero .lede{font-size:clamp(18px,2.1vw,22px);max-width:36ch;color:var(--muted);margin:24px 0 32px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{appearance:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:end;margin-bottom:36px}
+.sec-head h2{font-size:clamp(34px,5vw,60px);font-weight:700}
+.sec-head p{color:var(--muted);max-width:52ch;margin:0}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:14px}}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;margin-bottom:18px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--muted);font-weight:700;font-size:15px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.eras{display:flex;flex-wrap:wrap;gap:8px}
+.era-chip{border:1.5px solid var(--c);background:transparent;border-radius:999px;padding:6px 12px 6px 10px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.era-chip::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+.era-chip[aria-pressed="false"]{opacity:.45;border-style:dashed}
+.progress{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);margin-left:auto}
+.bar{width:140px;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .4s ease}
+
+/* timeline track */
+.track-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.track{position:relative;width:1400px;height:390px}
+.axis{position:absolute;left:40px;right:40px;height:2px;background:var(--line);transition:top .5s ease,opacity .4s}
+.lane-name{position:absolute;left:44px;font-size:13px;color:var(--muted);transition:top .5s ease,opacity .4s}
+.tick{position:absolute;font-size:12px;color:var(--muted);transform:translateX(-50%);transition:left .5s ease,top .5s ease,opacity .3s}
+.node{position:absolute;top:0;height:100%;width:0;transition:left .55s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.node .stem{position:absolute;left:0;width:1px;background:var(--c);opacity:.55;transition:top .55s ease,height .55s ease}
+.node .dot{position:absolute;left:-7px;width:14px;height:14px;border-radius:50%;border:2.5px solid var(--c);background:var(--surface);transition:top .55s ease,background .2s}
+.node.watched .dot{background:var(--c)}
+.node .lbl{position:absolute;transform:translateX(-50%);white-space:nowrap;border:1.5px solid var(--c);background:var(--raised);color:var(--ink);border-radius:8px;padding:4px 10px;font-size:13.5px;font-weight:700;cursor:pointer;transition:top .55s ease,background .2s,color .2s}
+.node .lbl:hover{background:color-mix(in srgb,var(--c) 18%,var(--raised))}
+.node.sel .lbl{background:var(--c);color:var(--bg)}
+.node.dim{opacity:.16}
+.node.hidden{opacity:0;pointer-events:none}
+.node.upcoming .lbl{border-style:dashed}
+.node.upcoming .dot{border-style:dashed}
+.hint{font-size:14px;color:var(--muted);margin:10px 4px 0}
+
+/* detail */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;margin-top:36px;padding:36px;border-radius:22px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--c,var(--line))}
+.detail h3{font-size:clamp(28px,3.6vw,44px);font-weight:700;margin-bottom:10px}
+.detail .era-name{color:var(--c);font-weight:700;margin-bottom:22px;display:block}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0}
+.facts dt{color:var(--muted);font-size:15px}
+.facts dd{margin:0;font-weight:700}
+.detail .plot{font-size:18.5px}
+.detail .why{color:var(--muted);font-style:italic}
+.watch{display:inline-flex;align-items:center;gap:10px;margin-top:8px;cursor:pointer;font-weight:700;user-select:none}
+.watch input{width:20px;height:20px;accent-color:var(--c)}
+@media (max-width:760px){.detail{grid-template-columns:1fr;padding:24px;gap:20px}}
+
+/* picker */
+.moods{display:flex;flex-wrap:wrap;gap:10px}
+.mood{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:14px 18px;cursor:pointer;text-align:left;min-width:200px;flex:1 1 200px}
+.mood b{display:block;font-family:"Syne",sans-serif;font-size:18px}
+.mood span{color:var(--muted);font-size:15px}
+.mood:hover,.mood[aria-pressed="true"]{border-color:var(--ink)}
+.pick-result{margin-top:22px;font-size:20px;min-height:1.6em}
+.pick-result button{background:none;border:0;padding:0;color:var(--blue);text-decoration:underline;cursor:pointer;font-weight:700}
+
+/* STO */
+.sto-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.sto-grid{grid-template-columns:1fr}}
+.sto-facts{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin:28px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+.sto-facts dt{color:var(--muted)}
+.sto-facts dd{margin:0}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1.5px solid var(--line);margin-bottom:20px}
+.tab{border:0;background:none;padding:10px 14px;cursor:pointer;color:var(--muted);font-weight:700;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.panel h3{font-size:26px;margin-bottom:10px}
+.panel .tag{color:var(--muted);font-size:15px;margin-bottom:12px;display:block}
+
+.power{margin-top:56px;padding:32px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.power h3{font-size:28px;margin-bottom:6px}
+.power .sub{color:var(--muted);margin-bottom:24px;max-width:60ch}
+.consoles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:end}
+@media (max-width:600px){.consoles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sys label{display:block;font-weight:700;margin-bottom:10px}
+.meter{height:150px;border-radius:12px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden;margin-bottom:10px}
+.meter i{position:absolute;left:0;right:0;bottom:0;background:var(--c);transition:height .25s ease}
+.meter b{position:absolute;top:8px;left:10px;font-family:"Syne",sans-serif;font-size:24px;z-index:1;color:var(--ink)}
+.sys input[type=range]{width:100%;accent-color:var(--c)}
+.power-foot{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-top:24px}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.preset{border:1.5px solid var(--line);background:var(--raised);border-radius:999px;padding:7px 14px;cursor:pointer;font-weight:700;font-size:14px}
+.preset:hover{border-color:var(--ink)}
+.pool{font-weight:700}
+.readout{margin-top:16px;font-size:18px}
+
+.log{list-style:none;margin:0;padding:0;position:relative}
+.log::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.log li{position:relative;padding:0 0 22px 34px}
+.log li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2.5px solid var(--teal)}
+.log time{display:block;color:var(--muted);font-size:15px}
+.log strong{font-family:"Syne",sans-serif;font-size:19px}
+
+.next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+@media (max-width:760px){.next{grid-template-columns:1fr;gap:28px}}
+.next h3{font-size:28px;margin-bottom:12px}
+
+footer{padding:40px 0 56px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Star Trek Atlas</a>
+    <a class="link" href="#films">Films</a>
+    <a class="link" href="#pick">Pick a film</a>
+    <a class="link" href="#sto">Star Trek Online</a>
+    <a class="link" href="#next">What’s next</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h1>Fourteen films. One galaxy you can fly.</h1>
+    <p class="lede">Every Star Trek movie from 1979 to 2025, mapped by release date and by when they happen, plus a field guide to Star Trek Online.</p>
+    <div class="actions">
+      <button class="btn" id="engage">Engage warp</button>
+      <a class="btn ghost" href="#sto">Go to Star Trek Online</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="films">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The films</h2>
+      <p>Switch between the order they came out and the order they happen in the story. The 2009 reboot films run on their own branch of history, so they get their own line. Mark films as watched to track your progress.</p>
+    </div>
+
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Order">
+        <button aria-pressed="true" data-mode="release">Release order</button>
+        <button aria-pressed="false" data-mode="story">Story order</button>
+      </div>
+      <div class="eras" id="eras" role="group" aria-label="Show crews"></div>
+      <div class="progress"><span id="prog-text">0 of 14 watched</span><span class="bar"><i id="prog-bar"></i></span></div>
+    </div>
+
+    <div class="track-scroll" tabindex="0" aria-label="Film timeline, scroll sideways">
+      <div class="track" id="track"></div>
+    </div>
+    <p class="hint">Filled dots are films you’ve watched. Select a title for details.</p>
+
+    <article class="detail" id="detail" aria-live="polite"></article>
+  </div>
+</section>
+
+<section id="pick">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What should I watch tonight?</h2>
+      <p>Choose a mood and get one film. New to Star Trek? Either of the first two picks makes a good starting point.</p>
+    </div>
+    <div class="moods" id="moods"></div>
+    <p class="pick-result" id="pick-result"></p>
+  </div>
+</section>
+
+<section id="sto">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Star Trek Online</h2>
+      <p>A free-to-play MMORPG that picks up decades after the last TNG film. You create your own captain, command a starship and crew of bridge officers, and fight in both space and on the ground.</p>
+    </div>
+
+    <div class="sto-grid">
+      <div>
+        <p>The story begins in 2409. The Romulan homeworld is gone, the Klingon Empire and the Federation are at war again, and the Borg are back. Over sixteen years, the game has grown into a sprawling continuation of Trek, with many actors from the shows returning to voice their characters.</p>
+        <p>Space combat is about positioning your ship: keep your strongest shield facing the enemy, line up your weapon arcs, and fire bridge officer abilities at the right moment. Ground missions play like a squad shooter with your away team.</p>
+        <dl class="sto-facts">
+          <dt>Launched</dt><dd>February 2010 on PC</dd>
+          <dt>Consoles</dt><dd>PlayStation 4 and Xbox One since 2016</dd>
+          <dt>Price</dt><dd>Free to play, with optional purchases</dd>
+          <dt>Developer</dt><dd>Cryptic Studios, published by Arc Games</dd>
+          <dt>Level cap</dt><dd>65</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="tabs" role="tablist" aria-label="Factions" id="tabs"></div>
+        <div id="panels"></div>
+      </div>
+    </div>
+
+    <div class="power">
+      <h3>Try the power panel</h3>
+      <p class="sub">In Star Trek Online, your ship splits its reactor between four subsystems. Every point you put in one is a point another doesn’t get. Drag the sliders or try a preset.</p>
+      <div class="consoles" id="consoles"></div>
+      <div class="power-foot">
+        <div class="presets" id="presets"></div>
+        <span class="pool" id="pool"></span>
+      </div>
+      <p class="readout" id="readout"></p>
+    </div>
+
+    <div class="sto-grid" style="margin-top:64px">
+      <div>
+        <h3 style="font-size:32px;margin-bottom:12px">2026 in Star Trek Online</h3>
+        <p style="color:var(--muted)">The game marked its 16th anniversary and Star Trek’s 60th this year, with a run of updates that remake early missions and bring back familiar faces.</p>
+      </div>
+      <ol class="log" id="log"></ol>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What’s next</h2>
+      <p>Where things stand as of October 2026.</p>
+    </div>
+    <div class="next">
+      <div>
+        <h3>A new film</h3>
+        <p>Paramount confirmed a new theatrical Star Trek film is in development, directed by Jonathan Goldstein and John Francis Daley. It will have an all-new cast of characters, will not continue the Chris Pine films, and is set further in the future than any Star Trek story so far.</p>
+        <p>No release date has been announced, and the script was still being written as of summer 2026.</p>
+      </div>
+      <div>
+        <h3>The game</h3>
+        <p>Season 37, “Rediscovered,” arrived on PC on September 22 and reaches PlayStation and Xbox in November 2026. More remakes of the game’s early missions are planned.</p>
+        <p>On television, Strange New Worlds and Starfleet Academy are both set to wrap up in 2027.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">A fan-made guide. Not affiliated with Paramount, CBS Studios, Cryptic Studios or Arc Games. Star Trek and related names are trademarks of their owners.</div>
+</footer>
+
+<script>
+const ERAS = {
+  tos:{name:"Original crew", c:"--gold"},
+  tng:{name:"Next Generation crew", c:"--red"},
+  kel:{name:"Kelvin timeline", c:"--blue"},
+  str:{name:"Streaming film", c:"--teal"}
+};
+const FILMS = [
+  {id:"tmp", short:"The Motion Picture", title:"Star Trek: The Motion Picture", year:1979, dir:"Robert Wise", mins:132, set:2273, lane:"prime", era:"tos", foe:"V’Ger",
+   plot:"A vast, unknown cloud is heading for Earth and destroying everything it meets. Admiral Kirk takes back the newly refitted Enterprise to intercept it, and the answer turns out to be an old Earth probe that went looking for its maker.",
+   why:"The slowest and most thoughtful entry. Jerry Goldsmith’s theme later became the TNG opening."},
+  {id:"twok", short:"Wrath of Khan", title:"Star Trek II: The Wrath of Khan", year:1982, dir:"Nicholas Meyer", mins:113, set:2285, lane:"prime", era:"tos", foe:"Khan Noonien Singh",
+   plot:"Khan, marooned by Kirk years earlier, escapes and steals the Genesis Device, a tool that can create life on a dead world or wipe out a living one. A cat-and-mouse duel in a nebula ends with a famous sacrifice.",
+   why:"Widely considered the best Star Trek film."},
+  {id:"tsfs", short:"Search for Spock", title:"Star Trek III: The Search for Spock", year:1984, dir:"Leonard Nimoy", mins:105, set:2285, lane:"prime", era:"tos", foe:"Commander Kruge",
+   plot:"Kirk and his crew steal the Enterprise to return to the Genesis planet and recover Spock, while a Klingon commander hunts for the secret of Genesis.",
+   why:"The crew risks their careers for a friend. Watch it right after II."},
+  {id:"tvh", short:"The Voyage Home", title:"Star Trek IV: The Voyage Home", year:1986, dir:"Leonard Nimoy", mins:119, set:2286, lane:"prime", era:"tos", foe:"The whale probe",
+   plot:"A mysterious probe threatens Earth while calling out to humpback whales, which no longer exist in the 23rd century. The crew slingshots around the sun to 1986 San Francisco to bring some back.",
+   why:"The funniest and warmest one, and a favorite of people who don’t usually watch Star Trek."},
+  {id:"tff", short:"The Final Frontier", title:"Star Trek V: The Final Frontier", year:1989, dir:"William Shatner", mins:107, set:2287, lane:"prime", era:"tos", foe:"Sybok",
+   plot:"Spock’s half-brother Sybok takes over the Enterprise and sets course for the center of the galaxy, where he believes he will find God.",
+   why:"The weakest reviews of the series, but the campfire scenes with Kirk, Spock and McCoy are lovely."},
+  {id:"tuc", short:"Undiscovered Country", title:"Star Trek VI: The Undiscovered Country", year:1991, dir:"Nicholas Meyer", mins:110, set:2293, lane:"prime", era:"tos", foe:"General Chang",
+   plot:"After a Klingon moon explodes, the Klingons and the Federation begin peace talks. Then the Klingon chancellor is assassinated, and Kirk and McCoy are framed for it.",
+   why:"A Cold War thriller and the original crew’s farewell."},
+  {id:"gen", short:"Generations", title:"Star Trek Generations", year:1994, dir:"David Carson", mins:118, set:2371, lane:"prime", era:"tng", foe:"Dr. Tolian Soran",
+   plot:"A scientist is willing to destroy stars to get back into the Nexus, a ribbon of energy that traps people in a perfect dream. Picard needs help from someone who vanished into it 78 years earlier: Kirk.",
+   why:"The handoff between the two crews."},
+  {id:"fc", short:"First Contact", title:"Star Trek: First Contact", year:1996, dir:"Jonathan Frakes", mins:111, set:2373, lane:"prime", era:"tng", foe:"The Borg Queen",
+   plot:"The Borg travel back to 2063 to stop humanity’s first warp flight. Picard must protect the flight’s inventor on Earth while the Borg take over the Enterprise-E deck by deck.",
+   why:"The best of the TNG films and a strong standalone action movie."},
+  {id:"ins", short:"Insurrection", title:"Star Trek: Insurrection", year:1998, dir:"Jonathan Frakes", mins:103, set:2375, lane:"prime", era:"tng", foe:"Ru’afo and the Son’a",
+   plot:"A planet’s rings slow aging, and Starfleet has agreed to help move its small population so others can harvest that effect. Picard refuses to go along with it.",
+   why:"Plays like a long, gentle TV episode."},
+  {id:"nem", short:"Nemesis", title:"Star Trek: Nemesis", year:2002, dir:"Stuart Baird", mins:116, set:2379, lane:"prime", era:"tng", foe:"Shinzon",
+   plot:"Shinzon, a clone of Picard raised in the mines of Remus, seizes power in the Romulan Empire and builds a warship carrying a weapon that can kill every living thing on a planet.",
+   why:"The TNG crew’s last film voyage."},
+  {id:"st09", short:"Star Trek (2009)", title:"Star Trek", year:2009, dir:"J.J. Abrams", mins:127, set:2258, lane:"kelvin", era:"kel", foe:"Nero",
+   plot:"A Romulan from the future destroys the USS Kelvin, and history splits into a new timeline. A reckless young Kirk and a conflicted Spock have to learn to work together to stop him.",
+   why:"Fast, fun and the easiest starting point for newcomers."},
+  {id:"stid", short:"Into Darkness", title:"Star Trek Into Darkness", year:2013, dir:"J.J. Abrams", mins:132, set:2259, lane:"kelvin", era:"kel", foe:"John Harrison",
+   plot:"After an attack on Starfleet, Kirk chases the man responsible to the Klingon homeworld and finds a conspiracy inside Starfleet itself.",
+   why:"Huge set pieces and a reimagined classic villain."},
+  {id:"beyond", short:"Beyond", title:"Star Trek Beyond", year:2016, dir:"Justin Lin", mins:122, set:2263, lane:"kelvin", era:"kel", foe:"Krall",
+   plot:"An ambush tears the Enterprise apart and strands the crew in small groups on a remote planet, where they have to find each other and fight back.",
+   why:"The Kelvin film that feels most like the original series. Released for the 50th anniversary."},
+  {id:"s31", short:"Section 31", title:"Star Trek: Section 31", year:2025, dir:"Olatunde Osunsanmi", mins:null, set:2324, lane:"prime", era:"str", foe:"The Godsend weapon",
+   plot:"Philippa Georgiou, a former emperor from the Mirror Universe, joins Starfleet’s secret intelligence division to stop a doomsday weapon tied to her own past.",
+   why:"A spy-caper film made for Paramount+, set between the eras of the film crews."},
+  {id:"next", short:"Next film", title:"Untitled Star Trek film", year:2028, upcoming:true, era:"str", lane:"prime",
+   plot:"In development with directors Jonathan Goldstein and John Francis Daley. All-new characters, set further in the future than any Star Trek before. No release date yet.",
+   why:"See “What’s next” below for details."}
+];
+
+const TRACK_W = 1400, X0 = 80, X1 = 1320, LABEL_H = 30;
+let mode = "release", selected = "twok";
+const eraOn = {tos:true,tng:true,kel:true,str:true};
+let watched = {};
+try { watched = JSON.parse(localStorage.getItem("trek-watched") || "{}") || {}; } catch(e){ watched = {}; }
+function saveWatched(){ try { localStorage.setItem("trek-watched", JSON.stringify(watched)); } catch(e){} }
+
+const track = document.getElementById("track");
+const css = getComputedStyle(document.documentElement);
+
+/* build static elements */
+const axisA = el("div","axis"), axisB = el("div","axis");
+const laneA = el("div","lane-name"), laneB = el("div","lane-name");
+laneA.textContent = "Prime timeline"; laneB.textContent = "Kelvin timeline (alternate)";
+track.append(axisA, axisB, laneA, laneB);
+const tickWrap = el("div"); track.append(tickWrap);
+
+const nodes = {};
+FILMS.forEach(f => {
+  const n = el("div","node" + (f.upcoming ? " upcoming" : ""));
+  n.style.setProperty("--c", `var(${ERAS[f.era].c})`);
+  const stem = el("div","stem"), dot = el("div","dot"), lbl = el("button","lbl");
+  lbl.type = "button";
+  lbl.textContent = f.short;
+  lbl.setAttribute("aria-label", `${f.title}, ${f.upcoming ? "in development" : f.year}`);
+  lbl.addEventListener("click", () => select(f.id));
+  n.append(stem, dot, lbl);
+  track.append(n);
+  nodes[f.id] = {n, stem, dot, lbl, f};
+});
+
+function el(tag, cls){ const e = document.createElement(tag); if (cls) e.className = cls; return e; }
+
+function layout(){
+  const isRel = mode === "release";
+  const [y0, y1] = isRel ? [1975, 2030] : [2245, 2390];
+  const xOf = y => X0 + (y - y0) / (y1 - y0) * (X1 - X0);
+
+  // ticks
+  tickWrap.innerHTML = "";
+  const step = isRel ? 10 : 20;
+  const startTick = Math.ceil(y0 / step) * step;
+  const tickY = isRel ? 340 : 358;
+  for (let y = startTick; y <= y1; y += step){
+    const t = el("div","tick"); t.textContent = y; t.style.left = xOf(y) + "px"; t.style.top = tickY + "px";
+    tickWrap.append(t);
+  }
+
+  if (isRel){
+    axisA.style.top = "320px"; axisB.style.opacity = 0; laneB.style.opacity = 0; laneA.style.opacity = 0;
+    const list = FILMS.slice().sort((a,b)=>a.year-b.year);
+    list.forEach((f,i) => place(f.id, xOf(f.year), 28 + (i % 4) * 64, 320, false));
+  } else {
+    axisA.style.top = "190px"; axisB.style.top = "336px"; axisB.style.opacity = 1;
+    laneA.style.top = "196px"; laneB.style.top = "342px"; laneA.style.opacity = 1; laneB.style.opacity = 1;
+    const prime = FILMS.filter(f=>f.lane==="prime" && !f.upcoming).sort((a,b)=>a.set-b.set || a.year-b.year);
+    prime.forEach((f,i) => place(f.id, xOf(f.set), 12 + (i % 5) * 34, 190, false));
+    const kel = FILMS.filter(f=>f.lane==="kelvin").sort((a,b)=>a.set-b.set);
+    kel.forEach((f,i) => place(f.id, xOf(f.set), 218 + i * 38, 336, false));
+    place("next", X1, 14, 190, true);
+  }
+  refreshStates();
+}
+function place(id, x, labelY, axisY, hide){
+  const {n, stem, dot, lbl} = nodes[id];
+  n.style.left = x + "px";
+  lbl.style.top = labelY + "px";
+  stem.style.top = (labelY + LABEL_H) + "px";
+  stem.style.height = Math.max(0, axisY - labelY - LABEL_H) + "px";
+  dot.style.top = (axisY - 6) + "px";
+  n.classList.toggle("hidden", hide);
+  lbl.tabIndex = hide ? -1 : 0;
+}
+function refreshStates(){
+  FILMS.forEach(f => {
+    const {n} = nodes[f.id];
+    n.classList.toggle("dim", !eraOn[f.era]);
+    n.classList.toggle("sel", f.id === selected);
+    n.classList.toggle("watched", !!watched[f.id]);
+  });
+  const total = FILMS.filter(f=>!f.upcoming).length;
+  const count = FILMS.filter(f=>!f.upcoming && watched[f.id]).length;
+  document.getElementById("prog-text").textContent = `${count} of ${total} watched`;
+  document.getElementById("prog-bar").style.width = (count/total*100) + "%";
+}
+
+function fmtMins(m){ return m ? `${Math.floor(m/60)} hr ${m%60} min` : "Streaming film"; }
+function setLabel(f){
+  if (f.upcoming) return "Further in the future than any Star Trek before";
+  if (f.id === "s31") return "About " + f.set;
+  if (f.id === "tvh") return f.set + ", with a trip to 1986";
+  if (f.id === "fc") return f.set + ", with a trip to 2063";
+  if (f.id === "gen") return "2293 and " + f.set;
+  return (f.lane === "kelvin" ? "" : "") + f.set + (f.lane === "kelvin" ? " (Kelvin timeline)" : "");
+}
+
+function select(id, scroll){
+  selected = id;
+  const f = FILMS.find(x=>x.id===id);
+  const d = document.getElementById("detail");
+  d.style.setProperty("--c", `var(${ERAS[f.era].c})`);
+  const facts = f.upcoming
+    ? `<dt>Directors</dt><dd>Jonathan Goldstein and John Francis Daley</dd><dt>Release</dt><dd>Not yet announced</dd><dt>Setting</dt><dd>${setLabel(f)}</dd>`
+    : `<dt>Released</dt><dd>${f.year}</dd><dt>Director</dt><dd>${f.dir}</dd><dt>Runtime</dt><dd>${fmtMins(f.mins)}</dd><dt>Set in</dt><dd>${setLabel(f)}</dd><dt>Threat</dt><dd>${f.foe}</dd>`;
+  d.innerHTML = `
+    <div>
+      <h3>${f.title}</h3>
+      <span class="era-name">${f.upcoming ? "In development" : ERAS[f.era].name}</span>
+      <dl class="facts">${facts}</dl>
+    </div>
+    <div>
+      <p class="plot">${f.plot}</p>
+      <p class="why">${f.why}</p>
+      ${f.upcoming ? "" : `<label class="watch"><input type="checkbox" id="wbox" ${watched[f.id] ? "checked" : ""}> I’ve watched this</label>`}
+    </div>`;
+  const box = document.getElementById("wbox");
+  if (box) box.addEventListener("change", () => { if (box.checked) watched[f.id] = true; else delete watched[f.id]; saveWatched(); refreshStates(); });
+  refreshStates();
+  if (scroll) d.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
+}
+
+/* mode toggle */
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  mode = b.dataset.mode;
+  document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  layout();
+}));
+
+/* era chips */
+const erasBox = document.getElementById("eras");
+Object.entries(ERAS).forEach(([k,v]) => {
+  const b = el("button","era-chip"); b.type = "button";
+  b.style.setProperty("--c", `var(${v.c})`);
+  b.textContent = v.name; b.setAttribute("aria-pressed","true");
+  b.addEventListener("click", () => { eraOn[k] = !eraOn[k]; b.setAttribute("aria-pressed", eraOn[k]); refreshStates(); });
+  erasBox.append(b);
+});
+
+layout(); select(selected);
+
+/* mood picker */
+const MOODS = [
+  {t:"Pure adventure", s:"Fast, funny, easy to jump into", id:"st09"},
+  {t:"A legendary villain", s:"The one everyone quotes", id:"twok"},
+  {t:"Time travel and laughs", s:"Fish out of water in the 1980s", id:"tvh"},
+  {t:"Action and horror", s:"Cybernetic zombies on the ship", id:"fc"},
+  {t:"A political thriller", s:"Murder, conspiracy, a peace deal", id:"tuc"},
+  {t:"Big ideas, slow burn", s:"Awe over action", id:"tmp"},
+  {t:"Stranded and scrappy", s:"The crew rebuilds from nothing", id:"beyond"}
+];
+const moods = document.getElementById("moods"), res = document.getElementById("pick-result");
+MOODS.forEach(m => {
+  const b = el("button","mood"); b.type = "button"; b.setAttribute("aria-pressed","false");
+  b.innerHTML = `<b>${m.t}</b><span>${m.s}</span>`;
+  b.addEventListener("click", () => {
+    moods.querySelectorAll(".mood").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const f = FILMS.find(x=>x.id===m.id);
+    res.innerHTML = `Watch <strong>${f.title}</strong> (${f.year}). <button type="button">See it on the timeline</button>`;
+    res.querySelector("button").addEventListener("click", () => { select(f.id, true); });
+    select(f.id);
+  });
+  moods.append(b);
+});
+
+/* STO factions */
+const FACTIONS = [
+  {n:"Federation", tag:"Available from the start", d:"Starfleet captains explore, keep the peace and fight when they have to. The Federation storyline is the main thread through the game and the best place for first-time players, with the widest choice of ships."},
+  {n:"Klingon Empire", tag:"Available from the start", d:"Play as an officer of the Klingon Defense Force. The Klingon story leans into honor, war and house politics, and Klingon ships favor cloaking devices and heavy forward firepower."},
+  {n:"Romulan Republic", tag:"Added in 2013’s Legacy of Romulus", d:"Survivors of Romulus’s destruction building a new, free state. Romulan characters have their own opening story, then choose to ally with either the Federation or the Klingons. Their warbirds draw power from artificial singularities."},
+  {n:"Dominion", tag:"Added in 2018’s Victory is Life", d:"Play as a Jem’Hadar soldier bred for war, starting with a story set during the Dominion War before joining the 25th century. Dominion characters also ally with the Federation or the Klingons and fly fast, hard-hitting ships."}
+];
+const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
+FACTIONS.forEach((f,i) => {
+  const t = el("button","tab"); t.type = "button"; t.setAttribute("role","tab"); t.id = "tab"+i;
+  t.setAttribute("aria-controls","panel"+i); t.setAttribute("aria-selected", i===0); t.tabIndex = i===0 ? 0 : -1;
+  t.textContent = f.n;
+  const p = el("div","panel"); p.setAttribute("role","tabpanel"); p.id = "panel"+i; p.setAttribute("aria-labelledby","tab"+i); p.hidden = i!==0;
+  p.innerHTML = `<h3>${f.n}</h3><span class="tag">${f.tag}</span><p>${f.d}</p>`;
+  t.addEventListener("click", () => activate(i));
+  t.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft"){
+      const j = (i + (e.key === "ArrowRight" ? 1 : -1) + FACTIONS.length) % FACTIONS.length;
+      activate(j); document.getElementById("tab"+j).focus();
+    }
+  });
+  tabs.append(t); panels.append(p);
+});
+function activate(i){
+  FACTIONS.forEach((_,j) => {
+    const t = document.getElementById("tab"+j);
+    t.setAttribute("aria-selected", j===i); t.tabIndex = j===i ? 0 : -1;
+    document.getElementById("panel"+j).hidden = j!==i;
+  });
+}
+
+/* power panel */
+const POOL = 200;
+const SYS = [
+  {k:"w", n:"Weapons", c:"--red"},
+  {k:"s", n:"Shields", c:"--blue"},
+  {k:"e", n:"Engines", c:"--gold"},
+  {k:"a", n:"Auxiliary", c:"--teal"}
+];
+const power = {w:50, s:50, e:50, a:50};
+const PRESETS = {
+  "Attack":{w:100, s:50, e:25, a:25},
+  "Balanced":{w:50, s:50, e:50, a:50},
+  "Tank":{w:40, s:100, e:25, a:35},
+  "Escape":{w:25, s:50, e:100, a:25},
+  "Science":{w:35, s:40, e:25, a:100}
+};
+const consoles = document.getElementById("consoles");
+SYS.forEach(s => {
+  const d = el("div","sys"); d.style.setProperty("--c", `var(${s.c})`);
+  d.innerHTML = `<label for="r-${s.k}">${s.n}</label><div class="meter"><b id="v-${s.k}"></b><i id="m-${s.k}"></i></div><input type="range" id="r-${s.k}" min="0" max="100" step="5" aria-describedby="pool">`;
+  consoles.append(d);
+  d.querySelector("input").addEventListener("input", e => {
+    const others = SYS.filter(x=>x.k!==s.k).reduce((sum,x)=>sum+power[x.k],0);
+    power[s.k] = Math.min(+e.target.value, POOL - others);
+    e.target.value = power[s.k];
+    drawPower();
+  });
+});
+const presets = document.getElementById("presets");
+Object.entries(PRESETS).forEach(([name,vals]) => {
+  const b = el("button","preset"); b.type = "button"; b.textContent = name;
+  b.addEventListener("click", () => { Object.assign(power, vals); drawPower(); });
+  presets.append(b);
+});
+function drawPower(){
+  let sum = 0;
+  SYS.forEach(s => {
+    sum += power[s.k];
+    document.getElementById("r-"+s.k).value = power[s.k];
+    document.getElementById("v-"+s.k).textContent = power[s.k];
+    document.getElementById("m-"+s.k).style.height = power[s.k] + "%";
+  });
+  const left = POOL - sum;
+  document.getElementById("pool").textContent = left > 0 ? `${left} power unassigned` : "Reactor fully assigned";
+  const vals = SYS.map(s=>power[s.k]);
+  const max = Math.max(...vals), min = Math.min(...vals);
+  const top = SYS.filter(s=>power[s.k]===max);
+  let msg;
+  if (max - min <= 15) msg = "Balanced. Nothing stands out and nothing is starved, a safe choice while you learn.";
+  else if (top.length > 1) msg = `${top.map(t=>t.n).join(" and ")} are tied for priority. Solid, but you’re not specialising.`;
+  else msg = {
+    w:"Phasers and torpedoes hit their hardest. Great for breaking shields quickly, but you’ll feel every hit you take.",
+    s:"Shields recharge fast, so you can soak damage and protect your team while they deal it.",
+    e:"Faster speed and tighter turns. Good for flanking, keeping weapons on target and getting out of trouble.",
+    a:"Science and healing abilities get much stronger. Built for crowd control, repairs and exotic damage."
+  }[top[0].k];
+  if (min < 20) msg += ` ${SYS.find(s=>power[s.k]===min).n} is running dangerously low.`;
+  document.getElementById("readout").textContent = msg;
+}
+drawPower();
+
+/* 2026 log */
+const LOG = [
+  {d:"February 17", t:"Corruption", x:"The 16th anniversary update. Ezri Dax returns as a captain to face the Chimerans, with a new five-player defense mission."},
+  {d:"April", t:"Quick Start", x:"A free, fully equipped level 60 Jem’Hadar character with a ship and gear, for a limited time."},
+  {d:"June 3", t:"Summer event", x:"The yearly summer event, with the living starship Gomtuu as the reward."},
+  {d:"July 7", t:"Undiscovered", x:"Season 36 begins remaking early missions, starting with a new voiced version of “The Kuva’magh” starring Miral Paris and the Doctor."},
+  {d:"September 22", t:"Rediscovered", x:"Season 37 brings three versions of Spock into one mission, voiced by Ethan Peck, archival Leonard Nimoy recordings and Piotr Michael. Consoles follow in November."}
+];
+const log = document.getElementById("log");
+LOG.forEach(l => {
+  const li = el("li");
+  li.innerHTML = `<time>${l.d} 2026</time><strong>${l.t}</strong><p style="margin:4px 0 0">${l.x}</p>`;
+  log.append(li);
+});
+
+/* starfield + warp */
+(() => {
+  const cv = document.getElementById("stars"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, DPR, stars = [], speed = 0.6, target = 0.6;
+  function resize(){
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function spawn(s, fresh){
+    s.x = (Math.random()-.5) * 2; s.y = (Math.random()-.5) * 2;
+    s.z = fresh ? Math.random() : 1; s.pz = s.z;
+  }
+  resize();
+  for (let i=0;i<420;i++){ const s={}; spawn(s,true); stars.push(s); }
+  window.addEventListener("resize", resize);
+  function starRGB(){ return getComputedStyle(document.documentElement).getPropertyValue("--star").trim() || "232,234,246"; }
+  let rgb = starRGB();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => rgb = starRGB());
+  function frame(){
+    speed += (target - speed) * 0.06;
+    ctx.clearRect(0,0,W,H);
+    const cx = W*0.62, cy = H*0.42, f = Math.max(W,H)*0.5;
+    for (const s of stars){
+      s.pz = s.z;
+      s.z -= 0.0025 * speed;
+      if (s.z <= 0.02){ spawn(s,false); continue; }
+      const x = cx + s.x / s.z * f * .5, y = cy + s.y / s.z * f * .5;
+      const px = cx + s.x / s.pz * f * .5, py = cy + s.y / s.pz * f * .5;
+      if (x<-50||x>W+50||y<-50||y>H+50){ spawn(s,false); continue; }
+      const a = Math.min(1, (1 - s.z) * 1.4);
+      ctx.strokeStyle = `rgba(${rgb},${a})`;
+      ctx.lineWidth = Math.max(.6, (1 - s.z) * 2.2);
+      ctx.beginPath();
+      if (speed > 2){ ctx.moveTo(px,py); ctx.lineTo(x,y); }
+      else { ctx.moveTo(x,y); ctx.lineTo(x+.01,y+.01); ctx.lineCap = "round"; }
+      ctx.stroke();
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  frame();
+  document.getElementById("engage").addEventListener("click", () => {
+    const go = () => document.getElementById("films").scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+    if (reduce){ go(); return; }
+    target = 34;
+    setTimeout(() => { go(); target = 0.6; }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
